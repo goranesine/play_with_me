@@ -26,9 +26,14 @@ class MyApp extends StatelessWidget {
 
               Provider.of<ObjectState>(context, listen: false)
                   .addOffset(renderBox.globalToLocal(details.globalPosition));
+            },onPanStart: (details) {
+              RenderBox renderBox = context.findRenderObject();
+
+              Provider.of<ObjectState>(context, listen: false)
+                  .addOffset(renderBox.globalToLocal(details.globalPosition));
             },
             onPanEnd: (details) {
-              Provider.of<ObjectState>(context, listen: false).points.add(null);
+              Provider.of<ObjectState>(context, listen: false).addOffset(null);
             },
             child: Consumer<ObjectState>(
               builder: (context, data, child) {
